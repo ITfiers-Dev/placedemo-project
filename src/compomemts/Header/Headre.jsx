@@ -1,33 +1,31 @@
-import React from 'react'
-import { Autocomplete } from '@react-google-maps/api'
-import { AppBar,Toolbar,Box,Typography,InputBase } from '@mui/material'
-import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
-import { HeaderStyle } from './styles';
+import React from "react";
+import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
+import {
+  HeaderStyle,
+  CustomToolbar,
+  Title,
+  Search,
+  SearchIconWrapper,
+  StyledInputBase
+} from "./styles";
+
 const Headre = () => {
   return (
+    <HeaderStyle position="static">
+      <CustomToolbar>
+        <Title variant="h5">Travel Advisor</Title>
+        <div style={{ display: "flex" }}>
+          <Title variant="h5">explore new places</Title>
+          <Search>
+            <SearchIconWrapper>
+              <SearchRoundedIcon />
+            </SearchIconWrapper>
+            <StyledInputBase placeholder="Search..." />
+          </Search>
+        </div>
+      </CustomToolbar>
+    </HeaderStyle>
+  );
+};
 
-    <HeaderStyle position='static'>
-    
-<Toolbar className="toolbar">
-<Typography variant='h5' className='title'>
-Travel Advisor
-</Typography>
-<Box display="flex">
-<Typography variant='h5' className='title'>
-  exploprte new places
-</Typography>
-{/* <Autocomplete> */}
-  <div className="search">
-    <div className='searchIcon'>
-      <SearchRoundedIcon/>
-    </div>
-    <InputBase placeholder='Search...' classes={{ root:'inputRoot', input:'inputINput'}}  />
-  </div>
-{/* </Autocomplete> */}
-</Box>
-</Toolbar>
-    
-    </HeaderStyle>)
-}
-
-export default Headre
+export default Headre;

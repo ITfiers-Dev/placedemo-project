@@ -8,18 +8,28 @@ import { CssBaseline, Grid } from "@mui/material";
 const App = () => {
   return (
     <>
+      <CssBaseline />
       <Headre />
 
-      <Grid container spacing={3} style={{ width: "100%" }}>
-        <Grid item xs={12} md={4}>
+      <Grid container spacing={2} >
+        <Grid item xs={12} md={4} lg={4} size={4}>
           <List />
         </Grid>
-        <Grid item xs={12} md={4}>
+        <Grid
+          item
+          xs={12}
+          md={8}
+          lg={8}
+          size={8}
+          style={{
+            
+            display:"flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           <Map />
         </Grid>
-        {/* <Grid item xs={12} md={4}>
-          <PlaceDetails />
-        </Grid> */}
       </Grid>
     </>
   );

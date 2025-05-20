@@ -1,20 +1,38 @@
-import React from 'react'
-import { GoogleMap,useJsApiLoader } from '@react-google-maps/api'
-import { Paper,Typography,useMediaQuery } from '@mui/material'
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-// import Rating from '@mui/material';
-import { MapStyle } from './styles';
-const Map = () => {
-  const isMobile=useMediaQuery('(min-width:600px)')
-  const coordinates={lat:0,lng:0}  
-  return (
-    <MapStyle>
-<div className='mapContainer'>
-  <GoogleMap bootstrapURLKeys={{key:""}} defaultCenter={coordinates} center={coordinates} defaultZoom={14} margin={[50,50,50,50]}
-  options={''} onChange={''} onChildClick={''} >mashAllah</GoogleMap>
-</div>
-    </MapStyle>
-  )
-}
+import React from 'react';
+import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
+import { useMediaQuery } from '@mui/material';
+import { StyledMapWrapper } from './styles'; // use appropriate names
 
-export default Map
+
+
+const Map = () => {
+  const isMobile = useMediaQuery('(min-width:600px)');
+  const center = { lat: 0, lng: 0 };
+
+  const containerStyle = {
+    width: "100%",
+    height: '85vh',
+  };
+  const { isLoaded, loadError } = useJsApiLoader({
+    id: 'google-map-script',
+    googleMapsApiKey: 'AIzaSyAl0nFosnEx3cdYlmSCyNvYX6VyVSfjxQM',
+  });
+
+  if (loadError) return <div style={{ color: 'red' }}>❌ Error loading Google Maps</div>;
+  if (!isLoaded) return <div style={{ color: 'gray' }}>⏳ Loading Google Map...</div>;
+
+  return (
+    <StyledMapWrapper>
+      <GoogleMap
+        mapContainerStyle={containerStyle}
+        center={center}
+        margin={[50,50,50,50]}
+        zoom={14}
+      >
+
+        </GoogleMap>
+     </StyledMapWrapper>
+  );
+};
+
+export default Map;
