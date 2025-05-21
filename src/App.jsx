@@ -5,20 +5,29 @@ import Map from "./compomemts/Map/Map.jsx";
 import PlaceDetails from "./compomemts/PlaceDetails/PlaceDetails.jsx";
 import { useEffect ,useState} from "react";
 import { CssBaseline, Grid } from "@mui/material";
-// import {getPlacesData} from "../src/api/index.js"
+import {getPlacesData} from "../src/api/index.js"
 const App = () => {
 const [places,setPlaces]=useState([]);
-const [cordinates,setCordinates]=useState({lat:0,lng:0});
-const [bounds,setBounds]=useState(null)
-//   useEffect(()=>{
-// getPlacesData().then((data)=>{
- 
-//   setPlaces(data)
-// })
+const [cordinates,setCordinates]=useState({});
+const [bounds,setBounds]=useState({})
+const [childClick,setChildClick]=useState(null)
 
-//   },[])
-  console.log(bounds)
-  console.log("app"+cordinates.lat)
+useEffect(()=>{
+  
+  navigator.geolocation.getCurrentPosition(({coords:{latitude,longitude}})=>{
+    setCordinates({lat:Number(latitude),lng:Number(longitude)})
+
+  })
+},[])
+console.log(bounds)
+useEffect(()=>{
+getPlacesData(bounds.south,bounds.north,bounds.east,bounds.west).then((data)=>{
+ 
+  setPlaces(data)
+})
+
+  },[cordinates,bounds])
+  
   return (
     <>
       <CssBaseline />
@@ -26,7 +35,7 @@ const [bounds,setBounds]=useState(null)
 
       <Grid container spacing={2} >
         <Grid item xs={12} md={4} lg={4} size={4}>
-          <List />
+          <List places={places} childClick={childClick}/>
         </Grid>
         <Grid
           item
@@ -41,8 +50,8 @@ const [bounds,setBounds]=useState(null)
             alignItems: "center",
           }}
         >
-          <Map setCordinates={setCordinates} setBounds={setBounds}  cordinates={cordinates}
-         />
+          <Map setCordinates={setCordinates} setBounds={setBounds}  cordinates={cordinates}  places={places} setCHildCick={setChildClick}
+          />
           
         </Grid>
       </Grid>

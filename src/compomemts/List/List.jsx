@@ -15,27 +15,10 @@ import {
   ListWrapper
 } from './styles';
 
-const List = () => {
+const List = ({places,childClick}) => {
   const [type, setType] = useState('restaurants');
   const [rating, setRating] = useState('');
-const places=[{name:"cool place"},
-  {name:"masjid"},
-  {nam:"playground"},
-  {name:"masjid"},
-  {nam:"playground"},
-  {name:"masjid"},
-  {nam:"playground"},
-  {name:"masjid"},
-  {nam:"playground"},
-  {name:"masjid"},
-  {nam:"playground"},
-  {name:"masjid"},
-  {nam:"playground"},
-  {name:"masjid"},
-  {nam:"playground"},
-  {name:"masjid"},
-  {nam:"playground"},
-]
+
   return (
     <Container>
       <Typography variant='h4'>

@@ -1,32 +1,30 @@
-// import axios from 'axios';
+import axios from 'axios';
 
-// const URL= 'https://travel-advisor.p.rapidapi.com/restaurants/list-in-boundary';
+const URL= '';
 
 
-// const options = {
-  
-  
-//   params: {
-//     bl_latitude: '11.847676',
-//     tr_latitude: '12.838442',
-//     bl_longitude: '109.095887',
-//     tr_longitude: '109.149359',
+
+
+
+export const getPlacesData=async (south,north,west,east)=>{
+  console.log("inside"+south+"outside"+north)
+try {
+    //  destructing data from respomnse and then hotels from data
+	const {data:{data}} = await axios.get(URL,{
+    params: {
+    bl_latitude: south,
+    tr_latitude: north,
+    bl_longitude: west,
+    tr_longitude: east,
     
-//   },
-//   headers: {
-//     'x-rapidapi-key': 'cb07d9aa0dmsh930e25f601d4dfcp1d45e7jsne55f706a57ed',
-//     'x-rapidapi-host': 'travel-advisor.p.rapidapi.com'
-//   }
-// };
-
-
-// export const getPlacesData=async ()=>{
-// try {
-//     //  destructing data from respomnse and then hotels from data
-// 	const {data:{data}} = await axios.get(URL,options);
-//     return data;
+  },
+  headers: {
+    'x-rapidapi-key': 'ebcce4d98amsh12383ac79f0ca2fp126e55jsn2d01205cf130',
+    'x-rapidapi-host': 'travel-advisor.p.rapidapi.com'
+  }});
+    return data;
 	
-// } catch (error) {
-// 	console.error(error);
-// }
-// }
+} catch (error) {
+	console.error(error);
+}
+}
